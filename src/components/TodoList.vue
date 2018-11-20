@@ -2,47 +2,43 @@
 
   <div>
 
-    <ul>
-      <li> Todo A </li>
-      <li> Todo B </li>
-      <li> Todo C </li>
-    </ul>
-
+    <p class="tasks">Completed Tasks: {{todos.filter(todo => {return todo.done === true}).length}}</p>
+    <p class="tasks">Pending Tasks: {{todos.filter(todo =>{return todo.done === false}).length}}</p>
+    <todo v-on:delete-todo="deleteTodo" v-on:complete-todo="completeTodo" v-for="todo in todos" v-bind:todo="todo"></todo>
   </div>
 
 </template>
 
 <script type = "text/javascript">
+import sweetalert from 'sweetalert';
+import Todo from './Todo';
 
 export default {
-  name: 'app',
+  props: ['todos']
   components: {
-    TodoList,
+    Todo,
   },
 
+  methods: {
+    deleteTodo(todo) {
+      sweetalert({
+        title: 'You sure about this?',
+        text: 'You sure about this? This will be permanently deleted.',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: "Yes! And don't question me!"
+        closeOnConfirm: false,
+      },
+      () => {
+      const todoIndex = this.todos.indexOf(todo);
+      this.todos.splice(todoIndex, 1);
+      sweetalert('Deleted!', 'Deleted!!!' 'success');
+      });
+    },
+    
+  }
 
-  data() {
-    return {
-      todos: [{
-        title: 'Todo A',
-        project: 'Project A',
-        done: false,
-      },{
-        title: 'Todo B',
-        project: 'Project B',
-        done: true,
-      },{
-        title: 'Todo C',
-        project: 'Project C',
-        done: false,
-      },{
-        title: 'Todo D',
-        project: 'Project D',
-        done: false,
-      }],
-    };
-  },
-};
 
 
 </script>
