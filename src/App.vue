@@ -4,6 +4,7 @@
     <div class="ui three column centered grid">
       <div class="column">
         <todo-list v-bind:todos="todos"></todo-list>
+        <create-todo v-on:create-todo="createTodo"></create-todo>
       </div>
     </div>
   </div>

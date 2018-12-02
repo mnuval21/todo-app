@@ -14,7 +14,7 @@ import sweetalert from 'sweetalert';
 import Todo from './Todo';
 
 export default {
-  props: ['todos']
+  props: ['todos'],
   components: {
     Todo,
   },
@@ -27,13 +27,13 @@ export default {
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: "Yes! And don't question me!"
+        confirmButtonText: "Yes! And don't question me!",
         closeOnConfirm: false,
       },
       () => {
       const todoIndex = this.todos.indexOf(todo);
       this.todos.splice(todoIndex, 1);
-      sweetalert('Deleted!', 'Deleted!!!' 'success');
+      sweetalert('Deleted!', 'Deleted!!!', 'success');
       });
     },
     completeTodo(todo) {
