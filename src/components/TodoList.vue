@@ -36,14 +36,20 @@ export default {
       sweetalert('Deleted!', 'Deleted!!!' 'success');
       });
     },
-    
-  }
-
+    completeTodo(todo) {
+      const todoIndex = this.todos.indexOf(todo);
+      this.todos[todoIndex].done = true;
+      sweetalert('Success!', 'To-Do completed!', 'success');
+    },
+  },
+};
 
 
 </script>
 
 
-<style>
-
+<style scoped>
+  p.tasks {
+    text-align: center;
+  }
 </style>
